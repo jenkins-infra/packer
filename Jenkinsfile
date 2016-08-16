@@ -2,7 +2,9 @@
 
 
 node('docker') {
-    docker.image('go:1.6-alpine') {
+    checkout scm
+
+    docker.image('golang:1.6-wheezy').inside {
         withEnv([
             'GOMAXPROCS=2',
         ]) {
