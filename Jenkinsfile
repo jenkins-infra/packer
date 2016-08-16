@@ -4,7 +4,10 @@
 node('docker') {
     checkout scm
 
-    docker.image('golang:1.6-wheezy').inside {
+    /* mapping /etc/passwd into the container so `git` (invoked by `go get` can
+     * properly resolve a username to perform a clone -_-
+     */
+    docker.image('golang:1.6-wheezy').inside('-v /etc/passwd:/etc/passwd') {
         /* Ensure that we have a directory in the right place so Go can find
          * us
          */
