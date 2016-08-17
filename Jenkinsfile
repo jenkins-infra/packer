@@ -22,7 +22,7 @@ node('docker') {
 
             stage 'Archive'
             sh 'cp -R $GOPATH/src/github.com/mitchellh/packer/pkg .'
-            archiveArtifacts artifacts: 'pkg/**/*.tar.gz', fingerprint: true
+            archiveArtifacts artifacts: 'pkg/**/packer', fingerprint: true
         }
     }
 }
